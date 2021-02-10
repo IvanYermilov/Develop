@@ -85,22 +85,24 @@ namespace HW03.Calculator.Static
             Console.Write("Input the Second number on wich the First one will be divided: ");
             str2 = Console.ReadLine();
             value2 = double.Parse(str2);
-            Console.WriteLine($"First number / Second number = {Calculator.Divide(value1, value2)}");
+            if (value2 == 0) Console.WriteLine("Division by zero is prohibited!");
+            else Console.WriteLine($"First number / Second number = {Calculator.Divide(value1, value2)}");
             Console.WriteLine();
 
-            Console.Write("Input the First number will be divided into the Second one: ");
+            Console.Write("Input the First number will be divided into the Second one to calculate Remainder: ");
             str1 = Console.ReadLine();
             value1 = Convert.ToDouble(str1);
-            Console.Write("Input the Second number on wich the First one will be divided: ");
+            Console.Write("Input the Second number on wich the First one will be divided to calculate Remainder: ");
             str2 = Console.ReadLine();
             value2 = Convert.ToDouble(str2);
-            Console.WriteLine($"Remainder of the division of First number and Second number = {Calculator.Reminder(value1, value2)}");
+            if (value2 == 0) Console.WriteLine("Division by zero is prohibited!");
+            else Console.WriteLine($"Remainder of the division of First number and Second number = {Calculator.Reminder(value1, value2)}");
             Console.WriteLine();
 
             Console.Write("Input the Radius of the circle: ");
             str1 = Console.ReadLine();
-            value1 = Convert.ToDouble(str1);
-            Console.WriteLine($"Square of the circle with the Radius was inputted = {Calculator.circleSquare(value1)}");
+            radius = Convert.ToDouble(str1);
+            Console.WriteLine($"Square of the circle with the Radius was inputted = {Calculator.circleSquare(radius)}");
             Console.ReadKey();
         }
     }
