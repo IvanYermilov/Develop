@@ -4,40 +4,63 @@ namespace HW04.Task3
 {
     class Program
     {
-        static void CheckResult(int value1, int value2, int supposedResult)
+        static bool IsResultTrue(int value1, int value2, int supposedResult)
         {
-            if ((value1 + value2) == supposedResult) Console.WriteLine("You're right!");
-            else if ((value1 + value2) < supposedResult) Console.WriteLine("You made a mistake. The result is lower.");
-            else if ((value1 + value2) > supposedResult) Console.WriteLine("You made a mistake. The result is greater.");
+            if ((value1 + value2) == supposedResult)
+            {
+                Console.WriteLine("You're right!");
+                return true;
+            }
+            else if ((value1 + value2) < supposedResult)
+            {
+                Console.WriteLine("You made a mistake. The result is lower.");
+                return false;
+            }
+            else
+            {
+                Console.WriteLine("You made a mistake. The result is greater.");
+                return false;
+            }
         }
 
         static void Main(string[] args)
         {
-            Console.Write("Input the first value you want to sum: ");
-            string value1Str = Console.ReadLine();
-            if (!int.TryParse(value1Str, out int value1))
+            int value1, value2, supposedResult;
+            for (; ; )
             {
+                Console.Write("Input the first value you want to sum: ");
+                string value1Str = Console.ReadLine();
+                if (int.TryParse(value1Str, out int parsedResult1))
+                {
+                    value1 = parsedResult1;
+                    break;
+                }
                 Console.WriteLine("Programm cannot parse inputted data.");
-                return;
             }
 
-            Console.Write("Input the second value you want to sum: ");
-            string value2Str = Console.ReadLine();
-            if (!int.TryParse(value2Str, out int value2))
+            for (; ; )
             {
+                Console.Write("Input the second value you want to sum: ");
+                string value2Str = Console.ReadLine();
+                if (int.TryParse(value2Str, out int parsedResult2))
+                {
+                    value2 = parsedResult2;
+                    break;
+                }
                 Console.WriteLine("Programm cannot parse inputted data.");
-                return;
             }
 
-            Console.Write("Input supposed result of two values summing: ");
-            string supposedResultStr = Console.ReadLine();
-            if (!int.TryParse(supposedResultStr, out int supposedResult))
+            for (; ; )
             {
-                Console.WriteLine("Programm cannot parse inputted data.");
-                return;
+                Console.Write("Input supposed result of two values summing: ");
+                string supposedResultStr = Console.ReadLine();
+                if (int.TryParse(supposedResultStr, out int parsedSupposedResult))
+                {
+                    supposedResult = parsedSupposedResult;
+                    if (Program.IsResultTrue(value1, value2, supposedResult)) break;
+                }
+                else Console.WriteLine("Programm cannot parse inputted data.");
             }
-
-            Program.CheckResult(value1, value2, supposedResult);
         }
     }
 }

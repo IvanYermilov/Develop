@@ -11,20 +11,29 @@ namespace HW04.Task1
 
         static void Main(string[] args)
         {
-            Console.Write("Input the first value you want to sum: ");
-            string value1Str = Console.ReadLine();
-            if (!int.TryParse(value1Str, out int value1))
+            int value1, value2;
+            for(; ;)
             {
+                Console.Write("Input the first value you want to sum: ");
+                string value1Str = Console.ReadLine();
+                if (int.TryParse(value1Str, out int parseResult1))
+                {
+                    value1 = parseResult1;
+                    break;
+                } 
                 Console.WriteLine("Programm cannot parse inputted data.");
-                return;
             }
 
-            Console.Write("Input the second value you want to sum: ");
-            string value2Str = Console.ReadLine();
-            if (!int.TryParse(value2Str, out int value2))
+            for (; ; )
             {
+                Console.Write("Input the second value you want to sum: ");
+                string value2Str = Console.ReadLine();
+                if (int.TryParse(value2Str, out int parseResult2))
+                {
+                    value2 = parseResult2;
+                    break;
+                }
                 Console.WriteLine("Programm cannot parse inputted data.");
-                return;
             }
 
             Program.SumValues(value1, value2);
