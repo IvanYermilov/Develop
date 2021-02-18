@@ -2,11 +2,10 @@
 
 namespace HW._05.Task3
 {
-    class Program
+    class Greeting
     {
-        static void Main(string[] args)
+        public static void DisplayGeeting(TimeSpan currentTime)
         {
-            TimeSpan currentTime = DateTime.Now.TimeOfDay;
             switch (currentTime.Hours)
             {
                 case 9:
@@ -33,6 +32,15 @@ namespace HW._05.Task3
                     Console.WriteLine("Just hello, guys :)");
                     break;
             }
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            TimeSpan currentTime = DateTime.Now.TimeOfDay;
+            Greeting.DisplayGeeting(currentTime);
         }
     }
 }
