@@ -10,11 +10,7 @@ namespace HW06.Task1
             {
                 Console.Write("Input the value you want insert into array cell: ");
                 string value = Console.ReadLine();
-                if (int.TryParse(value, out int parsedResult))
-                {
-                    return parsedResult;
-                    break;
-                }
+                if (int.TryParse(value, out int parsedResult)) return parsedResult;
                 Console.WriteLine("Programm cannot parse inputted data.");
             }
         }
