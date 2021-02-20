@@ -4,7 +4,6 @@ namespace HW06.Task3
 {
     class Program
     {
-        static int valueStorage;
         static int GetValueForArray()
         {
             for (; ; )
@@ -41,7 +40,7 @@ namespace HW06.Task3
             int arrayLastIndex = array.Length - 1;
             for (int i = 0; i < array.Length / 2; i++)
             {
-                valueStorage = array[arrayLastIndex - i];
+                int valueStorage = array[arrayLastIndex - i];
                 array[arrayLastIndex - i] = array[i];
                 array[i] = valueStorage;
             }
