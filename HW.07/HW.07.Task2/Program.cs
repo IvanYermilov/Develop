@@ -20,7 +20,7 @@ namespace HW._07.Task2
             string[] wordsArrayWthoutMaxValue = Array.FindAll(wordsArray, word => word != wordsArray[indexOfMaxLengthWord]);
             string lineWithoutMaxValue = String.Join(' ',wordsArrayWthoutMaxValue);
 
-            Console.WriteLine(lineWithoutMaxValue);
+            Console.WriteLine(lineWithoutMaxValue + "\n");
         }
 
         static void MaxMinWordsChange(string line)
@@ -48,7 +48,7 @@ namespace HW._07.Task2
             wordsArray[indexOfMaxLengthWord] = wordStorage;
             string lineWithChangedWords = String.Join(' ', wordsArray);
 
-            Console.WriteLine(lineWithChangedWords);
+            Console.WriteLine(lineWithChangedWords + "\n");
         }
 
         static void LettersAndPunctuatorCount(string line)
@@ -79,17 +79,19 @@ namespace HW._07.Task2
                 }
             }
 
-            Console.WriteLine($"In line {line} there are {punctuatorCounter} punctuators and {letterCounter} letters of Slavic or/and Latin alphabeat");
+            Console.WriteLine($"In line \"{line}\" there are {punctuatorCounter} punctuators and {letterCounter} letters of Slavic or/and Latin alphabeat\n");
         }
 
         static void SortArray(string line)
         {
             string[] wordsArray = line.Split(' ');
             Array.Sort(wordsArray, (x, y) => y.Length.CompareTo(x.Length));
+            Console.WriteLine("\nSorted array:");
             foreach (var item in wordsArray)
             {
                 Console.WriteLine(item);
             }
+            Console.WriteLine();
         }
 
 
