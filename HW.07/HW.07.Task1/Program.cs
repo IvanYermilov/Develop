@@ -6,7 +6,7 @@ namespace HW._07.Task1
     {
         static void Main(string[] args)
         {
-            Console.Write($"Input string in one line with ';' separator: ");
+            Console.Write($"Input string in one line with ';' separators: ");
             string inputtedString = Console.ReadLine();
             inputtedString = inputtedString.Replace('О', 'А');
             string[] linesArray = inputtedString.Split(';');

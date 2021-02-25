@@ -16,13 +16,10 @@ namespace HW._07.Task3
             {
                 case '+':
                     return value1 + value2;
-                    break;
                 case '-':
                     return value1 - value2;
-                    break;
                 case '*':
                     return value1 * value2;
-                    break;
                 case '/':
                     if (value2 != 0) return value1 / value2;
                     else

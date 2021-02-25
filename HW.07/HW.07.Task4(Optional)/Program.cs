@@ -8,7 +8,7 @@ namespace HW._07.Task4_Optional_
         {
             Console.WriteLine("I am" +18 + ".");
             Console.WriteLine("I am" +18.ToString() + ".");
-            Console.WriteLine($"I am { 18}.");
+            Console.WriteLine($"I am {18}.");
         }
     }
 }

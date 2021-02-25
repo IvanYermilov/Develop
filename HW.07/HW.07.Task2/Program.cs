@@ -71,9 +71,9 @@ namespace HW._07.Task2
                     case char symbol when symbol >= 'А' && symbol <= 'Я':
                         letterCounter++;
                         break;
-                    case char symbol when symbol == '\'' || symbol == '\"' || symbol == ',' || symbol == '.'
-                                          || symbol == '?' || symbol == '!' || symbol == ':' || symbol == '-'
-                                          || symbol == ';' || symbol == '(' || symbol == ')':
+                    case char symbol when symbol.Equals('\'') || symbol.Equals('\"') || symbol.Equals(',') || symbol.Equals('.')
+                                          || symbol.Equals('?') || symbol.Equals('!') || symbol.Equals(':') || symbol.Equals('-')
+                                          || symbol.Equals(';') || symbol.Equals('(') || symbol.Equals(')'):
                         punctuatorCounter++;
                         break;
                 }
