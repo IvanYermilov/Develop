@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HW.08.Task1", "HW.08.Task1\HW.08.Task1.csproj", "{2B889C8E-4494-48D4-B2EF-F285090458C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HW.08.Task1", "HW.08.Task1\HW.08.Task1.csproj", "{2B889C8E-4494-48D4-B2EF-F285090458C5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssemblyOne", "AssemblyOne\AssemblyOne.csproj", "{175E8B5A-D551-4F9D-8517-7C1DBCE58C0A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssemblyTwo", "AssemblyTwo\AssemblyTwo.csproj", "{4148F6D0-805D-4183-B280-C2CE28DCB771}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{2B889C8E-4494-48D4-B2EF-F285090458C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B889C8E-4494-48D4-B2EF-F285090458C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B889C8E-4494-48D4-B2EF-F285090458C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{175E8B5A-D551-4F9D-8517-7C1DBCE58C0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{175E8B5A-D551-4F9D-8517-7C1DBCE58C0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{175E8B5A-D551-4F9D-8517-7C1DBCE58C0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{175E8B5A-D551-4F9D-8517-7C1DBCE58C0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4148F6D0-805D-4183-B280-C2CE28DCB771}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4148F6D0-805D-4183-B280-C2CE28DCB771}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4148F6D0-805D-4183-B280-C2CE28DCB771}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4148F6D0-805D-4183-B280-C2CE28DCB771}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
