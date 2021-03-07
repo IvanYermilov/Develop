@@ -69,7 +69,7 @@ namespace Airport
             {
                 RegistrationSystem.Wait();
                 Console.WriteLine("Great! Your baggage doesn't exceed standard baggage size " +
-                  "that's means you could go to the Border Monitoring.");
+                  "that's means you could go to the Border Monitoring without baggage registration.");
             }
         }
 

@@ -46,7 +46,7 @@ namespace Airport
         internal static bool IsPersonalHasTicket(Passenger passenger)
         {
             Console.WriteLine($"Great! {passenger.passport.name}, first of all, please, answer the question: do you have a flight ticket?\n" +
-                "Answer \"yes\" if you have one and \"no\" if you haven't");
+                "Answer \"yes\" if you have one and \"no\" if you haven't.");
             for (; ; )
                 {
                 string answer = Console.ReadLine();
@@ -70,7 +70,7 @@ namespace Airport
             string ticketFlightNumber;
             DateTime ticketDepartureDate;
             Console.WriteLine($"{passenger.passport.name}, cool! If you have a ticket we need to know a little about it.\n" +
-                $"Please, input ticket's booking number");
+                $"Please, input ticket's booking number:");
             for (; ; )
             {
                 string inputtedTicketBookingNumber = Console.ReadLine();
@@ -81,7 +81,7 @@ namespace Airport
                 }
                 Console.WriteLine("Hmm... Doesn't look like booking number. Just a reminder booking number is a six upper case symbol number.");
             }
-            Console.WriteLine($"Well, now input ticket's flight number, please");
+            Console.WriteLine($"Well, now input ticket's flight number, please:");
             for (; ; )
             {
                 string inputtedTicketFlightNumber = Console.ReadLine();
@@ -92,7 +92,7 @@ namespace Airport
                 }
                 Console.WriteLine("Hmm... Doesn't look like flight number. Just a reminder booking number is a four-digit number.");
             }
-            Console.WriteLine($"Well, now input ticket's departure date in format dd.mm.yyyy, please");
+            Console.WriteLine($"Well, now input ticket's departure date in format dd.mm.yyyy, please:");
             for (; ; )
             {
                 string inputtedTicketDepartureDate = Console.ReadLine();
@@ -113,7 +113,7 @@ namespace Airport
             int planeSeatNumber;
             bool isPrinted = false;
             Console.WriteLine("You will arrive to the airport soon. Just wait a little.\n" +
-                "Do you want to Check In online before? Answer \"yes\" if you want and \"no\" if are not.");
+                "Do you want to Check In online before? Answer \"yes\" if you want and \"no\" if you are not.");
             for (; ; )
             {
                 string answer = Console.ReadLine();
@@ -123,7 +123,7 @@ namespace Airport
                         {
                             Console.WriteLine($"Ok, {passenger.passport.name}. First of all we need to check your booking number:");
                             RegistrationSystem.CheckBookingNumber(passenger);
-                            Console.WriteLine($"Well, now input your Surname");
+                            Console.WriteLine($"Well, now input your Surname:");
                             surname = RegistrationSystem.GetValidPassengerSurname(passenger);
                             passenger.passport.seriesNumber = RegistrationSystem.GetValidPassportSeriesNumber();
                             planeSeatNumber = RegistrationSystem.GetValidSeatNumber(passenger);
@@ -175,7 +175,7 @@ namespace Airport
             int planeSeatNumber;
             bool isPrinted = true;
             Console.WriteLine("Do you really want to check-in via desk.\n" +
-                "Answer \"yes\" if you want and \"no\" if are not.");
+                "Answer \"yes\" if you want and \"no\" if you are not.");
             for (; ; )
             {
                 string answer = Console.ReadLine();
@@ -192,7 +192,7 @@ namespace Airport
                             planeSeatNumber = RegistrationSystem.GetValidSeatNumber(passenger);
                             passenger.boardingPass = new BoardingPass(isPrinted, planeSeatNumber, passenger.passport.name, surname);
                             Console.WriteLine("You have cheked in successfully!");
-                            Console.WriteLine("Boarding pass is printing. Wait, please");
+                            Console.WriteLine("Boarding pass is printing. Wait, please.");
                             RegistrationSystem.Wait();
                             Console.WriteLine("Boarding pass has been printed.");
                             return;
@@ -213,7 +213,7 @@ namespace Airport
             int planeSeatNumber;
             bool isPrinted = true;
             Console.WriteLine("Do you really want to check-in via machie.\n" +
-                "Answer \"yes\" if you want and \"no\" if are not.");
+                "Answer \"yes\" if you want and \"no\" if you are not.");
             for (; ; )
             {
                 string answer = Console.ReadLine();
@@ -224,13 +224,13 @@ namespace Airport
                             Console.WriteLine($"You went to the check-in machine.\n" +
                                 $"Ok, {passenger.passport.name}. First of all you need to input your booking number:");
                             RegistrationSystem.CheckBookingNumber(passenger);
-                            Console.WriteLine($"Well, now input your Surname");
+                            Console.WriteLine($"Well, now input your Surname:");
                             surname = RegistrationSystem.GetValidPassengerSurname(passenger);
                             passenger.passport.seriesNumber = RegistrationSystem.GetValidPassportSeriesNumber();
                             planeSeatNumber = RegistrationSystem.GetValidSeatNumber(passenger);
                             passenger.boardingPass = new BoardingPass(isPrinted, planeSeatNumber, passenger.passport.name, surname);
                             Console.WriteLine("You have cheked in successfully!");
-                            Console.WriteLine("Boarding pass is printing. Wait, please");
+                            Console.WriteLine("Boarding pass is printing. Wait, please.");
                             RegistrationSystem.Wait();
                             Console.WriteLine("Boarding pass has been printed.");
                             return;
@@ -255,7 +255,7 @@ namespace Airport
                 if (RegistrationSystem.IsInputtedSurnameValid(inputtedSurname, passenger))
                 {
                     passenger.boardingPass.isPrinted = true;
-                    Console.WriteLine("Boarding pass is printing. Wait, please");
+                    Console.WriteLine("Boarding pass is printing. Wait, please.");
                     RegistrationSystem.Wait();
                     Console.WriteLine("Boarding pass has been printed.");
                     return;
@@ -337,7 +337,7 @@ namespace Airport
 
         internal static void BaggageRegistry(Baggage baggage)
         {
-            Console.WriteLine("Because of your baggage exceeds standard baggage size you must register and put it on the baggage carousel." +
+            Console.WriteLine("Because of your baggage exceeds standard baggage size you must register and put it on the baggage carousel. " +
                 "Let's go to the Check-in desk.\n" +
                 "Glad to see you at Check-in desk. Do you want to register your baggage? Answer \"yes\" if you want and \"no\" if you don't");
             string answer = string.Empty;
@@ -347,10 +347,10 @@ namespace Airport
                 switch (answer)
                 {
                     case string str when str.Equals(Constants.positiveAnswer):
-                        Console.WriteLine("Wait a second, please");
+                        Console.WriteLine("Wait a second, please.");
                         RegistrationSystem.Wait();
                         baggage.isRegistered = true;
-                        Console.WriteLine("Your baggage was successfully registered");
+                        Console.WriteLine("Your baggage was successfully registered.");
                         break;
                     case string str when str.Equals(Constants.negativeAnswer):
                         Console.WriteLine("Think twice. You won't pass preflight inspection if you don't register your baggage.\n" +

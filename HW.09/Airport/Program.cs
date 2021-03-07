@@ -19,11 +19,9 @@ namespace Airport
             {
                 PreflightInspection.GetBaggageInfo(passenger);
                 PreflightInspection.BaggageChecking(passenger.baggage);
-                RegistrationSystem.BaggageRegistry(passenger.baggage);
+                if (passenger.baggage.isExceedsStandardSize) RegistrationSystem.BaggageRegistry(passenger.baggage);
             }
-            Console.WriteLine("YMG");
-            //Console.WriteLine($"{passenger.passport.name} + {passenger.passport.surname}");
-            //Console.WriteLine($"{passenger.ticket.bookingNumber} + {passenger.ticket.departureDate}");
+            BorderMonitoring.DocumentsChecking(passenger);
         }
     }
 }
