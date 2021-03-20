@@ -18,9 +18,10 @@ namespace Task_1
             Type t = typeof(Program);
             Log.Information($"Application {t.Namespace} has been started");
             ConsoleIO consoleIO = new ConsoleIO();
-            while(!consoleIO.IsProgramMustStop())
+            bool isProgramMustStop = false;
+            while (!isProgramMustStop)
             {
-                consoleIO.PickDatabaseOperation();
+                consoleIO.PickOperation(out isProgramMustStop);
             }
             Log.Information($"Application {t.Namespace} has been stopped");
         }

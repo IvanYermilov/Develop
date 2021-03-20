@@ -55,26 +55,12 @@ namespace Task_1.UserInterface
             Repository.Delete(id);
         }
 
-        public bool IsProgramMustStop()
-        {
-            Console.Write("Input 'q' if you want to stop program:");
-            char inputtedChar = Console.ReadKey().KeyChar;
-            switch (inputtedChar)
-            {
-                case ('q'):
-                    Console.WriteLine();
-                    return true;
-                default:
-                    Console.WriteLine();
-                    return false;
-            }
-        }
-
-        public void PickDatabaseOperation()
+        public void PickOperation(out bool isProgramMustStop)
         {
             int motorcycleId;
-            Console.WriteLine("Input one of five operation you can do with Data Base " +
-                "(create; readAll, readById, update, delete):");
+            isProgramMustStop = false;
+            Console.Write("Input one of five operation you can do with data in database " +
+                "(create; readAll, readById, update, delete)\nor input \"exit\" if you want to stop the program:");
             for (; ; )
             {
                 string userInput = Console.ReadLine();
@@ -102,8 +88,11 @@ namespace Task_1.UserInterface
                         motorcycleId = GetMotorcycleId();
                         DeleteMotorcycle(motorcycleId);
                         return;
+                    case ("exit"):
+                        isProgramMustStop = true;
+                        return;
                     default:
-                        Console.Write("Program cannot perform this operation with database. Try to input operation again:");
+                        Console.Write("Program cannot perform this operation. Try to input operation again:");
                         break;
                 }
             }
@@ -122,8 +111,8 @@ namespace Task_1.UserInterface
 
         public static void PrintMotorcycle(Motorcycle motorcycle)
         {
-            Console.WriteLine($"Motorcycle info: ID-{motorcycle.Id}, Brand-{motorcycle.Brand}, Model-{motorcycle.Model}, " +
-                $"Year made-{motorcycle.Year}, Odometer value-{motorcycle.Odometer}");
+            Console.WriteLine($"Motorcycle info - ID:{motorcycle.Id}, Brand:{motorcycle.Brand}, Model:{motorcycle.Model}, " +
+                $"Year made:{motorcycle.Year}, Odometer value:{motorcycle.Odometer}");
         }
 
         public static int GetMotorcycleId()
