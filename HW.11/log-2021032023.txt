@@ -1,0 +1,45 @@
+2021-03-20 23:25:32.566 +03:00 [INF] Application Task_1 has been started
+2021-03-20 23:25:50.311 +03:00 [INF] Application Task_1 has been stopped
+2021-03-20 23:26:05.691 +03:00 [INF] Application Task_1 has been started
+2021-03-20 23:27:05.034 +03:00 [INF] Application Task_1 has been started
+2021-03-20 23:29:04.654 +03:00 [INF] Motorcycle with ID=0 was created.
+2021-03-20 23:29:34.998 +03:00 [INF] There is nothing to delete because motorcycle with ID=3 doesn't exist in database.
+2021-03-20 23:30:24.198 +03:00 [INF] There is nothing to delete because motorcycle with ID=-3 doesn't exist in database.
+2021-03-20 23:30:40.950 +03:00 [INF] All motorcycles exist in database were retrieved.
+2021-03-20 23:30:40.951 +03:00 [INF] Motorcycles displaying process has been started.
+2021-03-20 23:31:36.206 +03:00 [INF] Motorcycle with ID=1 was created.
+2021-03-20 23:31:51.998 +03:00 [INF] Motorcycle with ID=0 was removed.
+2021-03-20 23:32:02.774 +03:00 [INF] All motorcycles exist in database were retrieved.
+2021-03-20 23:32:02.775 +03:00 [INF] Motorcycles displaying process has been started.
+2021-03-20 23:32:30.198 +03:00 [INF] All motorcycles exist in database were retrieved.
+2021-03-20 23:32:30.199 +03:00 [INF] Motorcycles displaying process has been started.
+2021-03-20 23:32:37.238 +03:00 [INF] All motorcycles exist in database were retrieved.
+2021-03-20 23:32:37.239 +03:00 [INF] Motorcycles displaying process has been started.
+2021-03-20 23:32:59.790 +03:00 [INF] Motorcycle with ID=1 was removed.
+2021-03-20 23:33:05.902 +03:00 [INF] Database is empty.
+2021-03-20 23:33:13.214 +03:00 [INF] Application Task_1 has been stopped
+2021-03-20 23:50:31.504 +03:00 [INF] Application Task_1 has been started
+2021-03-20 23:50:57.073 +03:00 [INF] Application Task_1 has been started
+2021-03-20 23:51:04.486 +03:00 [INF] Application Task_1 has been started
+2021-03-20 23:51:28.537 +03:00 [INF] Application Task_1 has been started
+2021-03-20 23:51:33.032 +03:00 [INF] Application Task_1 has been stopped
+2021-03-20 23:51:40.404 +03:00 [INF] Application Task_1 has been started
+2021-03-20 23:51:57.244 +03:00 [INF] Application Task_1 has been started
+2021-03-20 23:52:03.568 +03:00 [INF] Motorcycle with ID=0 was created.
+2021-03-20 23:52:11.584 +03:00 [INF] Motorcycle with ID=1 was created.
+2021-03-20 23:52:15.728 +03:00 [INF] All motorcycles exist in database were retrieved.
+2021-03-20 23:52:15.729 +03:00 [INF] Motorcycles displaying process has been started.
+2021-03-20 23:52:24.120 +03:00 [INF] Motorcycle with ID=1 was retrieved.
+2021-03-20 23:52:24.121 +03:00 [INF] Motorcycle displaying process has been started.
+2021-03-20 23:53:18.698 +03:00 [INF] Application Task_1 has been started
+2021-03-20 23:53:38.224 +03:00 [INF] Motorcycle with ID=0 was created.
+2021-03-20 23:53:47.432 +03:00 [INF] Motorcycle with ID=1 was created.
+2021-03-20 23:54:00.512 +03:00 [INF] All motorcycles exist in database were retrieved.
+2021-03-20 23:54:00.513 +03:00 [INF] Motorcycles displaying process has been started.
+2021-03-20 23:54:36.336 +03:00 [INF] Motorcycle with ID=0 was updated.
+2021-03-20 23:54:56.632 +03:00 [INF] Motorcycle with ID=0 was retrieved.
+2021-03-20 23:54:56.634 +03:00 [INF] Motorcycle displaying process has been started.
+2021-03-20 23:55:10.912 +03:00 [INF] Motorcycle with ID=1 was removed.
+2021-03-20 23:55:14.192 +03:00 [INF] All motorcycles exist in database were retrieved.
+2021-03-20 23:55:14.194 +03:00 [INF] Motorcycles displaying process has been started.
+2021-03-20 23:55:33.568 +03:00 [INF] Application Task_1 has been stopped
