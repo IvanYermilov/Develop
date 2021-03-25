@@ -37,13 +37,12 @@ namespace Task1
             get { return _yearMade; }
             set { _yearMade = value; }
         }
+
         public MusicGenres Genre
         {
             get { return _genre; }
             set { _genre = value; }
         }
-
-
 
         public Song(string title, uint duration, string author, uint yearMade, MusicGenres genre)
         {
