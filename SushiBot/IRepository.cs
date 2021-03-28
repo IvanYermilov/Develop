@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace SushiBot
 {
-    class Program
+    interface IRepository
     {
-        static void Main(string[] args)
-        {
-            Logger Log = new Logger("kek");
-        }
     }
 }
