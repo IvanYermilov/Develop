@@ -47,7 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IRepository.cs" />
-    <Compile Include="Logger.cs" />
+    <Compile Include="Logger\Log.cs" />
+    <Compile Include="Logger\LoggerConfiguration.cs" />
+    <Compile Include="Logger\LoogerLevels.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />

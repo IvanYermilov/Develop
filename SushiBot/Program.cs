@@ -1,8 +1,10 @@
-﻿using System;
+﻿using SushiBot.Logger;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace SushiBot
 {
@@ -10,7 +12,9 @@ namespace SushiBot
     {
         static void Main(string[] args)
         {
-            Logger Log = new Logger("kek");
+            Log.Configuration = new LoggerConfiguration();
+            Log.Info("KeK");
+            Console.ReadKey();
         }
     }
 }
