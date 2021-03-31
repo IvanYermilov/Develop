@@ -1,4 +1,6 @@
-﻿namespace SushiBot.Logger
+﻿using System.IO;
+
+namespace SushiBot.Logger
 {
     public class LoggerConfiguration 
     {
