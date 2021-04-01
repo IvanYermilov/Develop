@@ -7,6 +7,7 @@ namespace SushiBot.Logger
         static private string _path;
         static private LoggerLevels _minLevel;
         static private uint _fileSize;
+            
 
         public LoggerConfiguration()
         {
