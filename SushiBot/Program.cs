@@ -12,14 +12,19 @@ namespace SushiBot
     {
         static void Main(string[] args)
         {
+            Repository rep = new Repository();
+            int i = 0;
             while (true)
             {
-                Log.Configuration = new LoggerConfiguration();
-                Log.Info("LoL");
+                Log.configuration = new LoggerConfiguration(@"c:\Temp\", LoggerLevels.Debug, 30);
+                Log.Debug("LoL");
                 Log.Info("KeK");
-                Log.Info("AZaZa");
-                //Console.ReadKey();
+                Log.Error("AZaZa");
+                rep.LogTesting();
+                i++;
+                //if (i == 50) break;
             }
+            Console.ReadKey();
         }
     }
 }

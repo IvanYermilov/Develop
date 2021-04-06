@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
@@ -10,29 +11,70 @@ namespace SushiBot.Logger
 {
     static partial class Log
     {
-        public static LoggerConfiguration Configuration;
+        public static LoggerConfiguration configuration;
         static public int logFileNumber = 1;
         static int currentYear = DateTime.Now.Year;
         static string currentMonth = DateTime.Now.ToString("MM");
         static string currentDay = DateTime.Now.ToString("dd");
 
+        internal static void Debug(string message)
+        {
+            if (configuration.MinLevel <= LoggerLevels.Debug) WriteLog(LoggerLevels.Debug, message);
+        }
+
         static public void Info(string message)
         {
-            FileInfo logFile = new FileInfo($"{Constants.loggsPath}" +
+            if (configuration.MinLevel <= LoggerLevels.Info) WriteLog(LoggerLevels.Info, message);
+        }
+
+        static public void Error(string message)
+        {
+            if (configuration.MinLevel <= LoggerLevels.Error) WriteLog(LoggerLevels.Error, message);
+        }
+
+        static private void WriteLog(LoggerLevels logLevel, string message)
+        {
+            string methName = new StackFrame(2).GetMethod().Name;
+            string methNamespace = new StackFrame(2).GetMethod().DeclaringType.Namespace;
+            
+            while (true)
+            {
+                FileInfo logFileInfo = new FileInfo($"{configuration.Path}" +
                 $"log {currentYear}{currentMonth}{currentDay}_{logFileNumber}.txt");
-            if (logFile.Exists && logFile.Length >= Constants.logFileLimit) logFileNumber++;
-            FileStream fs = new FileStream($"{Constants.loggsPath}" +
+                if (logFileInfo.Exists && logFileInfo.Length >= configuration.FileSize) logFileNumber++;
+                else break;
+            }
+            FileStream fs = new FileStream($"{configuration.Path}" +
                 $"log {currentYear}{currentMonth}{currentDay}_{logFileNumber}.txt", FileMode.Append);
-            StreamWriter sw = new StreamWriter(fs);
+            StreamWriter logFileWriter = new StreamWriter(fs);
             string currenTime = DateTime.Now.ToString("HH:mm:ss");
+            string logFileStr = null;
             Console.Write("[");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write("Info");
-            Console.ResetColor();
-            Console.WriteLine($"] {currenTime} message: \"{message}\"");
-            string str = $"[Info] {currenTime} message: \"{message}\"";
-            sw.Write(str+"\n");
-            sw.Close();
+            switch (logLevel)
+            {
+                case (LoggerLevels.Debug):
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write(LoggerLevels.Debug.ToString());
+                    Console.ResetColor();
+                    logFileStr = $"[{LoggerLevels.Debug}] ";
+                    break;
+                case (LoggerLevels.Info):
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write(LoggerLevels.Info.ToString());
+                    Console.ResetColor();
+                    logFileStr = $"[{LoggerLevels.Info}] ";
+                    break;
+                case (LoggerLevels.Error):
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write(LoggerLevels.Error.ToString());
+                    Console.ResetColor();
+                    logFileStr = $"[{LoggerLevels.Error}] ";
+                    break;
+            }
+            Console.WriteLine($"] {currenTime}; Message: \"{message}\"; Inovked from: {methNamespace}.{methName}");
+            logFileStr += $"{currenTime}; Message: \"{message}\"; Inovked from: {methNamespace}.{methName}";
+            logFileWriter.Write(logFileStr + "\n");
+            logFileWriter.Close();
             fs.Close();
         }
     }

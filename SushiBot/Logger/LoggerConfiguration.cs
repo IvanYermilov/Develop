@@ -7,20 +7,40 @@ namespace SushiBot.Logger
         static private string _path;
         static private LoggerLevels _minLevel;
         static private uint _fileSize;
-            
+        private const string defaultLogPath = ".";
+        private const uint defaultFileSize = 30;
+
+        public string Path
+        {
+            get { return _path; }
+            private set { _path = value; }
+        }
+
+        public LoggerLevels MinLevel
+        {
+            get { return _minLevel; }
+            private set { _minLevel = value; }
+        }
+
+        public uint FileSize
+        {
+            get { return _fileSize; }
+            private set { _fileSize = value; }
+        }
 
         public LoggerConfiguration()
         {
-            _path = ".";
+            
+            _path = defaultLogPath;
             _minLevel = LoggerLevels.Info;
-            _fileSize = 30;
+            _fileSize = 30000;
         }
 
-        public LoggerConfiguration(string path, LoggerLevels minLevel = LoggerLevels.Info, uint fileSize = 30)
+        public LoggerConfiguration(string path = defaultLogPath, LoggerLevels minLevel = LoggerLevels.Info, uint fileSize = defaultFileSize)
         {
             _path = path;
             _minLevel = minLevel;
-            _fileSize = fileSize;
+            _fileSize = fileSize*1000;
         }
     }
 
