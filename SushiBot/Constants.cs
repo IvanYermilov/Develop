@@ -8,6 +8,7 @@ namespace SushiBot
 {
     static class Constants
     {
-
+        public const string PostitiveAnswer = "Yes"; 
+        public const string NegativeAnswer = "No"; 
     }
 }

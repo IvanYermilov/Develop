@@ -8,14 +8,15 @@ namespace SushiBot
 {
     class UI
     {
-        public static void Menu()
+        public static string Menu()
         {
+            int a = Console.CursorTop;
             int index = 0;
-            string[] strArr = { "one", "two", "three" };
+            string[] strArr = { Constants.PostitiveAnswer, Constants.NegativeAnswer };
             for (; ; )
             {
                 Console.CursorVisible = false;
-                Console.WriteLine();
+                //Console.WriteLine();
                 for (int i = 0; i < strArr.Length; i++)
                 {
                     if (i == index)
@@ -37,8 +38,10 @@ namespace SushiBot
                         index--;
                         if (index < 0) index = strArr.Length - 1;
                         break;
+                    case (ConsoleKey.Enter):
+                        return strArr[index];
                 }
-                Console.Clear();
+                Console.SetCursorPosition(0, a);
             }
         }
     }

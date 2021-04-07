@@ -1,4 +1,5 @@
-﻿using SushiBot.Logger;
+﻿using Newtonsoft.Json;
+using SushiBot.Logger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +23,17 @@ namespace SushiBot
                 Log.Error("AZaZa");
                 rep.LogTesting();
                 i++;
-                //if (i == 50) break;
+                if (i == 1) break;
             }
+            //while(true)
+            //{
+            //    if (UI.Menu().Equals(Constants.PostitiveAnswer)) Console.WriteLine("Nice");
+            //}
+
+
+            Console.WriteLine(JsonConvert.SerializeObject(rep.storage, Formatting.Indented));
+
+            
             Console.ReadKey();
         }
     }
