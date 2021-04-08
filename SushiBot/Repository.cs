@@ -13,50 +13,27 @@ namespace SushiBot
         public Storage storage = new Storage();
         public List<Sushi> GetAll()
         {
-            throw new NotImplementedException();
+            if (IsSushiInSushiList())
+            {
+                List<Sushi> sushiList = storage.sushiList;
+                Log.Info($"All sushies exist in database were retrieved.");
+                return sushiList;
+            }
+            else Log.Info("Database is empty.");
+            return null;
         }
 
         public Sushi GetById(int id)
         {
-            throw new NotImplementedException();
+            Sushi sushi = storage.sushiList.FirstOrDefault(sushiObj => sushiObj.Id == id);
+            if (sushi != null) Log.Info($"Sushi with ID={sushi.Id} was retrieved.");
+            else Log.Info($"There is no sushi with ID={id} in database.");
+            return sushi;
         }
 
-        //public ArrayList GetAll()
-        //{
-        //    if (IsValuesInDb())
-        //    {
-        //        ArrayList motorcycleList = storage.motorcycleList;
-        //        Log.Information($"All motorcycles exist in database were retrieved.");
-        //        return motorcycleList;
-        //    }
-        //    else Log.Information("Database is empty.");
-        //    return null;
-        //}
-
-        //public Motorcycle GetById(int id)
-        //{
-        //    Motorcycle motorcycle = null;
-        //    foreach (var motoObj in storage.motorcycleList)
-        //    {
-        //        motorcycle = (Motorcycle)motoObj;
-        //        if (motorcycle.Id == id)
-        //        {
-        //            Log.Information($"Motorcycle with ID={motorcycle.Id} was retrieved.");
-        //            return motorcycle;
-        //        }
-        //        else motorcycle = null;
-        //    }
-        //    Log.Information($"There is no motorcycle with ID={id} in database.");
-        //    return motorcycle;
-        //}
-
-        //public bool IsValuesInDb()
-        //{
-        //    return storage.motorcycleList.Count != 0;
-        //}
-        internal void LogTesting()
+        public bool IsSushiInSushiList()
         {
-            Log.Info("KeK");
+            return storage.sushiList.Count != 0;
         }
     }
 }
