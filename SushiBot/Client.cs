@@ -11,6 +11,7 @@ namespace SushiBot
     {
         private string _name;
         private string _surname;
+        private string _address;
         private string _email;
 
         public string Name
@@ -21,15 +22,20 @@ namespace SushiBot
         {
             get { return _surname; }
         }
+        public string Address
+        {
+            get { return _address; }
+        }
         public string Email
         {
             get { return _email; }
         }
 
-        public Client(string name, string surname, string email)
+        public Client(string name, string surname, string address, string email)
         {
             _name = name;
             _surname = surname;
+            _address = address;
             _email = email;
         }
 

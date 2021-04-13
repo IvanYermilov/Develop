@@ -60,10 +60,13 @@ namespace SushiBot
                     continue;
                 }
             }
+            Console.WriteLine("Please, input your address:");
             string name = ClientNameSurnameArray[Constants.nameIndexInArray];
             string surname = ClientNameSurnameArray[Constants.surnameIndexInArray];
             string email = GetValidClientEmail();
-            Client client = new Client(name,surname,email);
+            string address = Console.ReadLine();
+            Client client = new Client(name, surname, address, email);
+            Console.WriteLine("Thank you for your personal information.");
             return client;
         }
 
@@ -77,6 +80,16 @@ namespace SushiBot
                 Console.WriteLine("Hmm... Guess there is a problem with format. " +
                     "Just a reminder email has the format \"example@example.example\", try again.");
             }
+        }
+
+        public static Dictionary<string, Sushi> SushiListConvert(List<Sushi> sushiList)
+        {
+            Dictionary<string, Sushi> sushiListDictionary = new Dictionary<string, Sushi>();
+            foreach (Sushi sushi in sushiList)
+            {
+                sushiListDictionary.Add(sushi.ToString(), sushi);
+            }
+            return sushiListDictionary;
         }
 
         //public void PickOperation(out bool isProgramMustStop)
@@ -121,38 +134,45 @@ namespace SushiBot
         //        }
         //    }
         //}
-        public static string Menu()
+        public static T Menu<T>(Dictionary<string,T> list)
         {
             int a = Console.CursorTop;
+            int listIndex = 0;
             int index = 0;
-            string[] strArr = { Constants.PostitiveAnswer, Constants.NegativeAnswer };
+            T value = default;
             for (; ; )
             {
                 Console.CursorVisible = false;
                 //Console.WriteLine();
-                for (int i = 0; i < strArr.Length; i++)
+                foreach (var item in list)
                 {
-                    if (i == index)
+                    if (listIndex == index)
                     {
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.BackgroundColor = ConsoleColor.White;
-
+                        value = item.Value;
                     }
-                    Console.WriteLine(strArr[i]);
+                    Console.WriteLine(item.Key);
                     Console.ResetColor();
+                    listIndex++;
                 }
                 switch (Console.ReadKey().Key)
                 {
                     case (ConsoleKey.DownArrow):
+                        listIndex = 0;
                         index++;
-                        if (index > strArr.Length - 1) index = 0;
+                        if (index > list.Count - 1) index = 0;
                         break;
                     case (ConsoleKey.UpArrow):
+                        listIndex = 0;
                         index--;
-                        if (index < 0) index = strArr.Length - 1;
+                        if (index < 0) index = list.Count - 1;
                         break;
                     case (ConsoleKey.Enter):
-                        return strArr[index];
+                        return value;
+                    _:
+                        listIndex = 0;
+                        break;
                 }
                 Console.SetCursorPosition(0, a);
             }

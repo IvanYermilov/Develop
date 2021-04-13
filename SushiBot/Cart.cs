@@ -12,7 +12,7 @@ namespace SushiBot
 
         public Cart()
         {
-            productList = new Dictionary<Sushi, uint>();
+            productList = new Dictionary<Sushi, uint>(); 
         }
 
         public void Add(Sushi sushi, uint quantity)

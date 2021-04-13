@@ -10,6 +10,7 @@ namespace SushiBot
 {
     class Storage
     {
-        public List<Sushi> sushiList = JsonConvert.DeserializeObject<List<Sushi>>(File.ReadAllText(@"..\..\SushiList\SushiList.json", Encoding.UTF8));
-    }
+        public List<Sushi> sushiList = JsonConvert
+            .DeserializeObject<List<Sushi>>(File.ReadAllText(@"..\..\SushiList\SushiList.json", Encoding.UTF8));
+    } 
 }

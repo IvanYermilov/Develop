@@ -18,21 +18,11 @@ namespace SushiBot
             {
                 Log.configuration = new LoggerConfiguration(@"c:\Temp\", LoggerLevels.Debug, 30);
                 Repository rep = new Repository();
-                Cart cart = new Cart();
-                Sushi a = rep.GetById(1);
-                
-                cart.productList.Add(rep.GetById(2), 10);
-                
-
+                Sushi s = UI.Menu(UI.SushiListConvert(rep.storage.sushiList));
                 //Client client = UI.GetClientlInfo();
-                //while(true)
-                //{
-                //    if (UI.Menu().Equals(Constants.PostitiveAnswer)) Console.WriteLine("Nice");
-                //}
-                rep.GetAll();
-                //
+                Console.ReadKey();
             }
-            Console.ReadKey();
+            
         }
     }
 }

@@ -38,5 +38,10 @@ namespace SushiBot
             _price = price;
             _description = description;
         }
+
+        public override string ToString()
+        {
+            return $"Name: {Name}; Price: {Price}; Description: {Description}";
+        }
     }
 }
