@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace SushiBot
 {
-    interface IRepository
+    interface ICartRepository
     {
-        Sushi GetById(int id);
-        List<Sushi> GetAll();
+        void Add(Sushi sushi, uint quantity);
+        void Substract(Sushi sushi, uint quantity);
     }
 }

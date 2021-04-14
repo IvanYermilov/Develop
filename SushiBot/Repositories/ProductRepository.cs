@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SushiBot
 {
-    class Repository: IRepository
+    class ProductRepository: IProductRepository
     {
         public Storage storage = new Storage();
         public List<Sushi> GetAll()

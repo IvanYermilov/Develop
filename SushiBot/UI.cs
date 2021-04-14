@@ -21,8 +21,8 @@ namespace SushiBot
 
         internal static bool IsProgramStart()
         {
-            Console.Write("Input any symbol if you want to stat SushiBOT." +
-                "\nInput \"q\" if you want to stop the program:");
+            Console.Write("Input any symbol if you want to start SushiBOT." +
+                "\nInput \"q\" if you want to stop the program: ");
             for (; ; )
             {
                 char userInput = Console.ReadKey().KeyChar;
@@ -34,6 +34,62 @@ namespace SushiBot
                         Console.Write("\nOk, bot is starting");
                         Wait();
                         return true;
+                }
+            }
+        }
+
+        internal static void showMenu(ProductRepository productRep)
+        {
+            Console.WriteLine("Look at sushi menu:\n" +
+                              "------------------");
+            foreach (var sushi in productRep.GetAll())
+            {
+                Console.WriteLine(sushi.ToString());
+                Console.ResetColor();
+            }
+            Console.WriteLine("------------------");
+        }
+
+        internal static void Order(ProductRepository productRep, CartRepository cartRep)
+        {
+            for (; ; )
+            {
+                Console.WriteLine("Pick up operation:");
+                string userInput = Menu(UI.arrayConvert(Constants.MainMenu));
+                switch (userInput)
+                {
+                    case (Constants.MenuOptionAdd):
+                        Console.WriteLine("Choose sushi you want to add to cart:");
+                        Sushi sushi = Menu(SushiListConvert(productRep.GetAll()));
+                        Console.Write("Input amount of sushi you want to add to cart: ");
+                        uint sushiAmount = GetPositiveNumber();
+                        cartRep.Add(sushi, sushiAmount);
+                        break;
+                    //case ("readAll"):
+                    //    GetAllMotorcycles();
+                    //    return;
+                    //case ("readById"):
+                    //    Console.Write("Input ID of motorcycle you want to read: ");
+                    //    motorcycleId = GetMotorcycleId();
+                    //    GetMotorcycleById(motorcycleId);
+                    //    return;
+                    //case ("update"):
+                    //    Console.Write("Input ID of motorcycle you want to upadte: ");
+                    //    motorcycleId = GetMotorcycleId();
+                    //    Console.WriteLine($"Input new information about motorcycle with ID-{motorcycleId}");
+                    //    UpadateMotorcycle(motorcycleId, GetMotorcycle());
+                    //    return;
+                    //case ("delete"):
+                    //    Console.Write("Input ID of motorcycle you want to delete: ");
+                    //    motorcycleId = GetMotorcycleId();
+                    //    DeleteMotorcycle(motorcycleId);
+                    //    return;
+                    //case ("exit"):
+                    //    isProgramMustStop = true;
+                    //    return;
+                    //default:
+                    //    Console.Write("Program cannot perform this operation. Try to input operation again:");
+                    //    break;
                 }
             }
         }
@@ -92,47 +148,38 @@ namespace SushiBot
             return sushiListDictionary;
         }
 
+        public static Dictionary<string, KeyValuePair<Sushi, uint>> CartListConvert(Dictionary<Sushi, uint> cartList)
+        {
+            Dictionary<string, KeyValuePair<Sushi, uint>> cartiListDictionary = new Dictionary<string, KeyValuePair<Sushi, uint>>();
+            foreach (var cartProduct in cartList)
+            {
+                cartiListDictionary.Add(cartPosition2String(cartProduct), cartProduct);
+            }
+            return cartiListDictionary;
+        }
+
+        public static Dictionary<string, string> arrayConvert(string[] answerList)
+        {
+            Dictionary<string, string> answerDictionary = new Dictionary<string, string>();
+            foreach (var answer in answerList)
+            {
+                answerDictionary.Add(answer, answer);
+            }
+            return answerDictionary;
+        }
+
+        public static string cartPosition2String(KeyValuePair<Sushi, uint> cartPosition)
+        {
+            return $"{cartPosition.Key.ToString()}. Amount: {cartPosition.Value}";
+        }
+
+
+
         //public void PickOperation(out bool isProgramMustStop)
         //{
         //    int motorcycleId;
         //    isProgramMustStop = false;
-        //    Console.Write("Input one of five operation you can do with data in database " +
-        //        "(create; readAll, readById, update, delete)\nor input \"exit\" if you want to stop the program:");
-        //    for (; ; )
-        //    {
-        //        string userInput = Console.ReadLine();
-        //        switch (userInput)
-        //        {
-        //            case ("create"):
-        //                CreateMotorcycle(GetMotorcycle());
-        //                return;
-        //            case ("readAll"):
-        //                GetAllMotorcycles();
-        //                return;
-        //            case ("readById"):
-        //                Console.Write("Input ID of motorcycle you want to read: ");
-        //                motorcycleId = GetMotorcycleId();
-        //                GetMotorcycleById(motorcycleId);
-        //                return;
-        //            case ("update"):
-        //                Console.Write("Input ID of motorcycle you want to upadte: ");
-        //                motorcycleId = GetMotorcycleId();
-        //                Console.WriteLine($"Input new information about motorcycle with ID-{motorcycleId}");
-        //                UpadateMotorcycle(motorcycleId, GetMotorcycle());
-        //                return;
-        //            case ("delete"):
-        //                Console.Write("Input ID of motorcycle you want to delete: ");
-        //                motorcycleId = GetMotorcycleId();
-        //                DeleteMotorcycle(motorcycleId);
-        //                return;
-        //            case ("exit"):
-        //                isProgramMustStop = true;
-        //                return;
-        //            default:
-        //                Console.Write("Program cannot perform this operation. Try to input operation again:");
-        //                break;
-        //        }
-        //    }
+
         //}
         public static T Menu<T>(Dictionary<string,T> list)
         {
@@ -175,6 +222,16 @@ namespace SushiBot
                         break;
                 }
                 Console.SetCursorPosition(0, a);
+            }
+        }
+
+        public static uint GetPositiveNumber()
+        {
+            for (; ; )
+            {
+                string numberStr = Console.ReadLine();
+                if (uint.TryParse(numberStr, out uint number)) return number;
+                Console.Write("Programm cannot parse inputted data. Try again: ");
             }
         }
     }
