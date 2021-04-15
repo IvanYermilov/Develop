@@ -14,21 +14,21 @@ namespace SushiBot
     {
         static void Main(string[] args)
         {
-            if (UI.IsProgramStart())
+            if (Ui.IsProgramStart())
             {
-                Log.configuration = new LoggerConfiguration(@"c:\Temp\", LoggerLevels.Debug, 30);
+                Log.Configuration = new LoggerConfiguration(@"c:\Temp\", LoggerLevels.Error, 30);
                 
                 ProductRepository productRep = new ProductRepository();
                 CartRepository cartRep = new CartRepository();
                 //Client client = UI.GetClientlInfo();
-                UI.showMenu(productRep);
-                UI.Order(productRep,cartRep);
+                Ui.ShowMenu(productRep);
+                Ui.Order(productRep,cartRep);
 
                 cartRep.Add(productRep.GetById(1), 20);
                 cartRep.Add(productRep.GetById(2), 10);
-                var e1 = UI.Menu(UI.CartListConvert(cartRep.cart.productList));
-                Sushi e2 = UI.Menu(UI.SushiListConvert(productRep.storage.sushiList));
-                string e3 = UI.Menu(UI.arrayConvert(Constants.YesNoMenu));
+                var e1 = Ui.Menu(Ui.CartListConvert(cartRep.Cart.ProductList));
+                Sushi e2 = Ui.Menu(Ui.SushiListConvert(productRep.Storage.SushiList));
+                string e3 = Ui.Menu(Ui.ArrayConvert(Constants.YesNoMenu));
                 Console.ReadKey();
             }
             Console.ReadKey();

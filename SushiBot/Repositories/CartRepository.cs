@@ -10,19 +10,33 @@ namespace SushiBot
 {
     class CartRepository: ICartRepository
     {
-        public Cart cart = new Cart();
-        public void Add(Sushi sushi, uint quantity)
+        public Cart Cart = new Cart();
+        public void Add(Sushi sushi, uint amount)
         {
-            if (!cart.productList.ContainsKey(sushi)) cart.productList.Add(sushi, quantity);
-            else cart.productList[sushi] += quantity;
+            if (!Cart.ProductList.ContainsKey(sushi)) Cart.ProductList.Add(sushi, amount);
+            else Cart.ProductList[sushi] += amount;
         }
-        public void Substract(Sushi sushi, uint quantity)
+
+        public void EditValue( KeyValuePair<Sushi, uint> cartPosition, uint sushiAmount)
         {
-            if (cart.productList.TryGetValue(sushi, out uint inCartSushiQuantity))
+            Cart.ProductList[cartPosition.Key] = sushiAmount;
+        }
+
+        public Dictionary<Sushi,uint> GetAll() 
+        {
+            if (IsPositionsInCart())
             {
-                if (inCartSushiQuantity < quantity) cart.productList.Remove(sushi);
-                else cart.productList[sushi] -= quantity;
+                var cartPositionsList = Cart.ProductList;
+                Log.Info($"All positions exist in Cart were retrieved.");
+                return cartPositionsList;
             }
+            else Log.Info("Cart is empty.");
+            return null;
+        }
+
+        public bool IsPositionsInCart()
+        {
+            return Cart.ProductList.Count != 0;
         }
     }
 }

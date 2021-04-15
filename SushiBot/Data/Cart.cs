@@ -8,11 +8,25 @@ namespace SushiBot
 {
     class Cart
     {
-        public Dictionary<Sushi, uint> productList;
+        public Dictionary<Sushi, uint> ProductList;
 
         public Cart()
         {
-            productList = new Dictionary<Sushi, uint>(); 
+            ProductList = new Dictionary<Sushi, uint>(); 
+        }
+
+        public decimal GetCurrentCartPrice()
+        {
+            decimal sushiPrice;
+            decimal totalPrice = default;
+            uint amount;
+            foreach (var position in ProductList)
+            {
+                sushiPrice = position.Key.Price;
+                amount = position.Value;
+                totalPrice += sushiPrice * amount;
+            }
+            return totalPrice;
         }
     }
 }

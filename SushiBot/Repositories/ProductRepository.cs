@@ -10,12 +10,12 @@ namespace SushiBot
 {
     class ProductRepository: IProductRepository
     {
-        public Storage storage = new Storage();
+        public Storage Storage = new Storage();
         public List<Sushi> GetAll()
         {
             if (IsSushiInSushiList())
             {
-                List<Sushi> sushiList = storage.sushiList;
+                List<Sushi> sushiList = Storage.SushiList;
                 Log.Info($"All sushies exist in database were retrieved.");
                 return sushiList;
             }
@@ -25,7 +25,7 @@ namespace SushiBot
 
         public Sushi GetById(int id)
         {
-            Sushi sushi = storage.sushiList.FirstOrDefault(sushiObj => sushiObj.Id == id);
+            Sushi sushi = Storage.SushiList.FirstOrDefault(sushiObj => sushiObj.Id == id);
             if (sushi != null) Log.Info($"Sushi with ID={sushi.Id} was retrieved.");
             else Log.Info($"There is no sushi with ID={id} in database.");
             return sushi;
@@ -33,7 +33,7 @@ namespace SushiBot
 
         public bool IsSushiInSushiList()
         {
-            return storage.sushiList.Count != 0;
+            return Storage.SushiList.Count != 0;
         }
     }
 }

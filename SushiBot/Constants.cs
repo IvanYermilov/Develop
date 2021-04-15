@@ -12,16 +12,16 @@ namespace SushiBot
         public const string NegativeAnswer = "No";
         public const string MenuOptionAdd = "Add sushi to Cart";
         public const string MenuOptionChange = "Change sushi amount in Cart";
-        public const string MenuOptionDelete = "Delete position from cart";
-        public const string MenuOptionShow = "Show cart";
+        public const string MenuOptionDelete = "Delete position from Cart";
+        public const string MenuOptionShow = "Show Cart";
         public const string MenuOptionConfirm = "Confirm order";
         public static readonly string[] YesNoMenu = { PositiveAnswer, NegativeAnswer };
         public static readonly string[] MainMenu =
         {
             MenuOptionAdd, MenuOptionChange, MenuOptionDelete, MenuOptionShow, MenuOptionConfirm
         };
-        internal const int nameIndexInArray = 0;
-        internal const int surnameIndexInArray = 1;
-        internal static int clientNameSurnamePartialsNumber = 2;
+        internal const int NameIndexInArray = 0;
+        internal const int SurnameIndexInArray = 1;
+        internal static int ClientNameSurnamePartialsNumber = 2;
     }
 }

@@ -39,11 +39,11 @@ namespace SushiBot
             _email = email;
         }
 
-        internal static bool IsEmailValid(string ClientEmail)
+        internal static bool IsEmailValid(string clientEmail)
         {
             string pattern = @"^[a-z.\-_]+@[a-z]+\.[a-z]+$";
             Regex rgx = new Regex(pattern,RegexOptions.IgnoreCase);
-            return rgx.IsMatch(ClientEmail);
+            return rgx.IsMatch(clientEmail);
         }
     }
 }

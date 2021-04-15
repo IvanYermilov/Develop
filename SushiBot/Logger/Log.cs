@@ -11,25 +11,25 @@ namespace SushiBot.Logger
 {
     static partial class Log
     {
-        public static LoggerConfiguration configuration;
-        static public int logFileNumber = 1;
-        static int currentYear = DateTime.Now.Year;
-        static string currentMonth = DateTime.Now.ToString("MM");
-        static string currentDay = DateTime.Now.ToString("dd");
+        public static LoggerConfiguration Configuration;
+        static public int LogFileNumber = 1;
+        static int _currentYear = DateTime.Now.Year;
+        static string _currentMonth = DateTime.Now.ToString("MM");
+        static string _currentDay = DateTime.Now.ToString("dd");
 
         internal static void Debug(string message)
         {
-            if (configuration.MinLevel <= LoggerLevels.Debug) WriteLog(LoggerLevels.Debug, message);
+            if (Configuration.MinLevel <= LoggerLevels.Debug) WriteLog(LoggerLevels.Debug, message);
         }
 
         static public void Info(string message)
         {
-            if (configuration.MinLevel <= LoggerLevels.Info) WriteLog(LoggerLevels.Info, message);
+            if (Configuration.MinLevel <= LoggerLevels.Info) WriteLog(LoggerLevels.Info, message);
         }
 
         static public void Error(string message)
         {
-            if (configuration.MinLevel <= LoggerLevels.Error) WriteLog(LoggerLevels.Error, message);
+            if (Configuration.MinLevel <= LoggerLevels.Error) WriteLog(LoggerLevels.Error, message);
         }
 
         static private void WriteLog(LoggerLevels logLevel, string message)
@@ -39,13 +39,13 @@ namespace SushiBot.Logger
             
             while (true)
             {
-                FileInfo logFileInfo = new FileInfo($"{configuration.Path}" +
-                $"log {currentYear}{currentMonth}{currentDay}_{logFileNumber}.txt");
-                if (logFileInfo.Exists && logFileInfo.Length >= configuration.FileSize) logFileNumber++;
+                FileInfo logFileInfo = new FileInfo($"{Configuration.Path}" +
+                $"log {_currentYear}{_currentMonth}{_currentDay}_{LogFileNumber}.txt");
+                if (logFileInfo.Exists && logFileInfo.Length >= Configuration.FileSize) LogFileNumber++;
                 else break;
             }
-            FileStream fs = new FileStream($"{configuration.Path}" +
-                $"log {currentYear}{currentMonth}{currentDay}_{logFileNumber}.txt", FileMode.Append);
+            FileStream fs = new FileStream($"{Configuration.Path}" +
+                $"log {_currentYear}{_currentMonth}{_currentDay}_{LogFileNumber}.txt", FileMode.Append);
             StreamWriter logFileWriter = new StreamWriter(fs);
             string currenTime = DateTime.Now.ToString("HH:mm:ss");
             string logFileStr = null;

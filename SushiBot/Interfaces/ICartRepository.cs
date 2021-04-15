@@ -10,6 +10,9 @@ namespace SushiBot
     interface ICartRepository
     {
         void Add(Sushi sushi, uint quantity);
+
         void Substract(Sushi sushi, uint quantity);
+
+        void EditValue(KeyValuePair<Sushi, uint> cartPosition, uint sushiAmount);
     }
 }
