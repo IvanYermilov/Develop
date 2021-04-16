@@ -14,24 +14,25 @@ namespace SushiBot
     {
         static void Main(string[] args)
         {
-            if (Ui.IsProgramStart())
+            if (UI.IsProgramStart())
             {
                 Log.Configuration = new LoggerConfiguration(@"c:\Temp\", LoggerLevels.Error, 30);
-                
+                bool isOrderConfirmed = default;
+                Order order = default;
                 ProductRepository productRep = new ProductRepository();
                 CartRepository cartRep = new CartRepository();
-                //Client client = UI.GetClientlInfo();
-                Ui.ShowMenu(productRep);
-                Ui.Order(productRep,cartRep);
-
-                cartRep.Add(productRep.GetById(1), 20);
-                cartRep.Add(productRep.GetById(2), 10);
-                var e1 = Ui.Menu(Ui.CartListConvert(cartRep.Cart.ProductList));
-                Sushi e2 = Ui.Menu(Ui.SushiListConvert(productRep.Storage.SushiList));
-                string e3 = Ui.Menu(Ui.ArrayConvert(Constants.YesNoMenu));
-                Console.ReadKey();
+                Client client = UI.GetClientlInfo();
+                UI.ShowMenu(productRep);
+                while (!isOrderConfirmed)
+                {
+                    UI.Order(productRep, cartRep);
+                    isOrderConfirmed = UI.ConfirmOrder(cartRep);
+                    order = new Order(cartRep);
+                }
+                Notifications.OrderReady2Delivery(client, order);
+                Console.WriteLine("Good boy");
             }
-            Console.ReadKey();
+            //Console.ReadKey();
         }
     }
 }

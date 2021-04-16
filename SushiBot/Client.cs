@@ -41,7 +41,7 @@ namespace SushiBot
 
         internal static bool IsEmailValid(string clientEmail)
         {
-            string pattern = @"^[a-z.\-_]+@[a-z]+\.[a-z]+$";
+            string pattern = @"^[0-9a-z.\-_]+@[a-z]+\.[a-z]+$";
             Regex rgx = new Regex(pattern,RegexOptions.IgnoreCase);
             return rgx.IsMatch(clientEmail);
         }

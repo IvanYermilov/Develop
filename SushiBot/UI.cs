@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace SushiBot
 {
-    class Ui
+    static class UI
     {
         internal static void Wait()
         {
@@ -46,7 +42,6 @@ namespace SushiBot
             foreach (var sushi in productRep.GetAll())
             {
                 Console.WriteLine(sushi.ToString());
-                Console.ResetColor();
             }
             Console.WriteLine("------------------\n");
         }
@@ -57,21 +52,33 @@ namespace SushiBot
             foreach (var position in cartRepository.GetAll())
             {
                 Console.WriteLine(CartPosition2String(position));
-                Console.ResetColor();
             }
             Console.Write("------------------\n");
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("Total price: ");
             Console.ResetColor();
             Console.WriteLine(cartRepository.Cart.GetCurrentCartPrice());
+        }  
+        
+        internal static string ConvertCart2String(CartRepository cartRepository)
+        {
+            string result = "------------------<br>";
+            foreach (var position in cartRepository.GetAll())
+            {
+                result += $"{CartPosition2String(position)}<br>";
+            }
+            result += "------------------<br>";
+            return result += $"<b>Total price:</b> {cartRepository.Cart.GetCurrentCartPrice()}";
         }
+
+        
 
         internal static void Order(ProductRepository productRep, CartRepository cartRep)
         {
             for (; ; )
             {
                 Console.WriteLine("Pick up operation:");
-                string userInput = Menu(Ui.ArrayConvert(Constants.MainMenu));
+                string userInput = Menu(ArrayConvert(Constants.MainMenu));
                 switch (userInput)
                 {
                     case (Constants.MenuOptionAdd):
@@ -123,12 +130,16 @@ namespace SushiBot
                             Console.ResetColor();
                         }
                         break;
-
-                        //case (Constants.MenuOptionConfirm):
-                        //    Console.Write("Input ID of motorcycle you want to read: ");
-                        //    motorcycleId = GetMotorcycleId();
-                        //    GetMotorcycleById(motorcycleId);
-                        //    return;
+                    case (Constants.MenuOptionConfirm):
+                        cartList = cartRep.GetAll();
+                        if (cartList != null) return;
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            Console.WriteLine("Your Order is Empty. There is nothing to confirm.");
+                            Console.ResetColor();
+                            break;
+                        }
                 }
                 Console.WriteLine();
             }
@@ -156,10 +167,11 @@ namespace SushiBot
                     continue;
                 }
             }
-            Console.WriteLine("Please, input your address:");
+            
             string name = clientNameSurnameArray[Constants.NameIndexInArray];
             string surname = clientNameSurnameArray[Constants.SurnameIndexInArray];
             string email = GetValidClientEmail();
+            Console.WriteLine("Please, input your address:");
             string address = Console.ReadLine();
             Client client = new Client(name, surname, address, email);
             Console.WriteLine("Thank you for your personal information.");
@@ -266,6 +278,24 @@ namespace SushiBot
                 if (uint.TryParse(numberStr, out uint number)) return number;
                 Console.Write("Program cannot parse inputted data. Try again: ");
             }
+        }
+
+        public static bool ConfirmOrder(CartRepository cartRep)
+        {
+            bool isOrderConfirmed = default;
+            ShowCart(cartRep);
+            Console.WriteLine("\nDo you confirm your order?");
+            string userInput = Menu(ArrayConvert(Constants.YesNoMenu));
+            switch (userInput)
+            {
+                case (Constants.PositiveAnswer):
+                    isOrderConfirmed = true;
+                    break;
+                case (Constants.NegativeAnswer):
+                    isOrderConfirmed = false;
+                    break;
+            }
+            return isOrderConfirmed;
         }
     }
 }
