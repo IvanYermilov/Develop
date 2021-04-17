@@ -15,6 +15,8 @@ namespace SushiBot
         public const string MenuOptionDelete = "Delete position from Cart";
         public const string MenuOptionShow = "Show Cart";
         public const string MenuOptionConfirm = "Confirm order";
+        public const string EmailLogin = "sushibotitacademy@gmail.com";
+        public const string EmailPassword = "123456789hj`";
         public static readonly string[] YesNoMenu = { PositiveAnswer, NegativeAnswer };
         public static readonly string[] MainMenu =
         {

@@ -6,21 +6,57 @@ namespace SushiBot
 {
     class Notifications
     {
-        public static void OrderReady2Delivery(Client client, Order order)
+        MailAddress from = new MailAddress("sushibotitacademy@gmail.com", "SushiBotItAcademy");
+        MailAddress to;
+        MailMessage message;
+        SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+        Client client;
+        Order order;
+
+        public Notifications(Client client, Order order)
         {
-            MailAddress from = new MailAddress("sushibotitacademy@gmail.com", "SushiBotItAcademy");
-            MailAddress to = new MailAddress(client.Email);
-            MailMessage m = new MailMessage(from, to);
-            m.Subject = $"Order №{order.ID}";
-            m.Body = $"<p>Dear, {client.Name}, your <b>Order</b> №{order.ID} is ready<br>" +
+            this.client = client;
+            this.order = order;
+            to = new MailAddress(client.Email);
+            message = new MailMessage(from, to);
+        }
+
+        public void OrderReady2Delivery()
+        {
+            message.Subject = $"Order №{order.ID}";
+            message.Body = $"<p>Dear, {client.Name} {client.Surname}, your <b>Order</b> №{order.ID} is ready<br>" +
                      $"<b>Order info:</b><br>" +
-                     $"{UI.ConvertCart2String(order.Cart)}</h2>";
-            m.IsBodyHtml = true;
-            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-            smtp.Credentials = new NetworkCredential("sushibotitacademy@gmail.com", "123456789hj`");
+                     $"{UI.ConvertCart2String(order.Cart)}<br><br>" +
+                     $"<b>Delivery address: </b>{client.Address}</p>";
+            message.IsBodyHtml = true;
+            smtp.Credentials = new NetworkCredential(Constants.EmailLogin, Constants.EmailPassword);
             smtp.EnableSsl = true;
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-            smtp.Send(m);
+            smtp.Send(message);
+        }
+
+        public void OrderDelivered()
+        {
+            message.Subject = $"Order №{order.ID}";
+            message.Body = $"<p>Dear, {client.Name} {client.Surname}, your <b>Order</b> №{order.ID} has been delivered " +
+                           $"to the address: {client.Address}.</p>";
+            message.IsBodyHtml = true;
+            smtp.Credentials = new NetworkCredential(Constants.EmailLogin, Constants.EmailPassword);
+            smtp.EnableSsl = true;
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtp.Send(message);
+        }
+        
+        public void OrderPaid()
+        {
+            message.Subject = $"Order №{order.ID}";
+            message.Body = $"<p>Dear, {client.Name} {client.Surname}, your <b>Order</b> №{order.ID} has been paid.<br><br>" +
+                           $"Thank you!</p>";
+            message.IsBodyHtml = true;
+            smtp.Credentials = new NetworkCredential(Constants.EmailLogin, Constants.EmailPassword);
+            smtp.EnableSsl = true;
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtp.Send(message);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Threading;
 
 namespace SushiBot
@@ -164,7 +165,6 @@ namespace SushiBot
                 catch (IndexOutOfRangeException)
                 {
                     Console.WriteLine("Something went wrong. Please, input your name and surname separately again.");
-                    continue;
                 }
             }
             
@@ -296,6 +296,11 @@ namespace SushiBot
                     break;
             }
             return isOrderConfirmed;
+        }
+
+        public static void SendNotification(Action notification)
+        {
+            notification.Invoke();
         }
     }
 }

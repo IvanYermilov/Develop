@@ -16,7 +16,7 @@ namespace SushiBot
         {
             if (UI.IsProgramStart())
             {
-                Log.Configuration = new LoggerConfiguration(@"c:\Temp\", LoggerLevels.Error, 30);
+                Log.Configuration = new LoggerConfiguration(@"c:\Temp\", LoggerLevels.Info, 30);
                 bool isOrderConfirmed = default;
                 Order order = default;
                 ProductRepository productRep = new ProductRepository();
@@ -29,7 +29,10 @@ namespace SushiBot
                     isOrderConfirmed = UI.ConfirmOrder(cartRep);
                     order = new Order(cartRep);
                 }
-                Notifications.OrderReady2Delivery(client, order);
+                Notifications notifications = new Notifications(client, order);
+                UI.SendNotification(notifications.OrderReady2Delivery);
+                UI.SendNotification(notifications.OrderDelivered);
+                UI.SendNotification(notifications.OrderPaid);
                 Console.WriteLine("Good boy");
             }
             //Console.ReadKey();
