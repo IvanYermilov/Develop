@@ -47,9 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\MaxProductsQuantityAttribute.cs" />
     <Compile Include="Data\Cart.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Exceptions\CartLimitExceededException.cs" />
     <Compile Include="Interfaces\ICartRepository.cs" />
     <Compile Include="Interfaces\IProductRepository.cs" />
     <Compile Include="Logger\Log.cs" />

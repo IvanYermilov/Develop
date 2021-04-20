@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
+using SushiBot.Attributes;
+using SushiBot.Exceptions;
 
 namespace SushiBot
 {
+
+    
     class Cart
     {
+        [MaxProductsAmountInPosition(MaxQuantity = 50)]
         public Dictionary<Sushi, uint> ProductList;
 
         public Cart()
@@ -27,6 +31,15 @@ namespace SushiBot
                 totalPrice += sushiPrice * amount;
             }
             return totalPrice;
+        }
+        public void CheckPositionProductsAmount(uint productsAmount)
+        {
+            Type attributeType = typeof(MaxProductsAmountInPositionAttribute);
+            Type cartType = GetType();
+            var a = (MaxProductsAmountInPositionAttribute)cartType.GetMembers()
+                .First(_ => _.Name == "ProductList").GetCustomAttribute(attributeType);
+            if (productsAmount > a.MaxQuantity) 
+                throw new CartLimitExceededException("Sushi amount in cart position must be less than 50.");
         }
     }
 }
