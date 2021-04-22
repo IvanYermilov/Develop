@@ -11,12 +11,12 @@ namespace SushiBot
     
     class Cart
     {
-        [MaxProductsAmountInPosition(MaxQuantity = 50)]
+        [MaxProductsAmountInPosition(MaxQuantity = Constants.CartPositionLimit)]
         public Dictionary<Sushi, uint> ProductList;
 
         public Cart()
         {
-            ProductList = new Dictionary<Sushi, uint>(); 
+            ProductList = new Dictionary<Sushi, uint>();
         }
 
         public decimal GetCurrentCartPrice()
@@ -39,7 +39,8 @@ namespace SushiBot
             var a = (MaxProductsAmountInPositionAttribute)cartType.GetMembers()
                 .First(_ => _.Name == "ProductList").GetCustomAttribute(attributeType);
             if (productsAmount > a.MaxQuantity) 
-                throw new CartLimitExceededException("Sushi amount in cart position must be less than 50.");
+                throw new CartLimitExceededException("Sushi amount in cart position must be less than or equals 50." +
+                                                     " Amount was set to maximum value.");
         }
     }
 }

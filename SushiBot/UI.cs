@@ -7,6 +7,7 @@ namespace SushiBot
 {
     static class UI
     {
+        public static event Action NotifyCustomer; 
         internal static void Wait()
         {
             for (int i = 1; i <= 5; i++)
@@ -298,9 +299,9 @@ namespace SushiBot
             return isOrderConfirmed;
         }
 
-        public static void SendNotification(Action notification)
+        public static void SendNotification()
         {
-            notification.Invoke();
+            NotifyCustomer.Invoke();
         }
     }
 }

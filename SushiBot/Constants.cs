@@ -17,13 +17,14 @@ namespace SushiBot
         public const string MenuOptionConfirm = "Confirm order";
         public const string EmailLogin = "sushibotitacademy@gmail.com";
         public const string EmailPassword = "123456789hj`";
+        public const uint CartPositionLimit = 50;
         public static readonly string[] YesNoMenu = { PositiveAnswer, NegativeAnswer };
         public static readonly string[] MainMenu =
         {
             MenuOptionAdd, MenuOptionChange, MenuOptionDelete, MenuOptionShow, MenuOptionConfirm
         };
-        internal const int NameIndexInArray = 0;
-        internal const int SurnameIndexInArray = 1;
-        internal static int ClientNameSurnamePartialsNumber = 2;
+        public const int NameIndexInArray = 0;
+        public const int SurnameIndexInArray = 1;
+        public static int ClientNameSurnamePartialsNumber = 2;
     }
 }

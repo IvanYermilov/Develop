@@ -30,12 +30,13 @@ namespace SushiBot
                     order = new Order(cartRep);
                 }
                 Notifications notifications = new Notifications(client, order);
-                UI.SendNotification(notifications.OrderReady2Delivery);
-                UI.SendNotification(notifications.OrderDelivered);
-                UI.SendNotification(notifications.OrderPaid);
+                UI.NotifyCustomer += notifications.OrderReady2Delivery;
+                UI.NotifyCustomer += notifications.OrderDelivered;
+                UI.NotifyCustomer += notifications.OrderPaid;
+                UI.SendNotification();
                 Console.WriteLine("Good boy");
             }
-            //Console.ReadKey();
+            Console.ReadKey();
         }
     }
 }

@@ -24,14 +24,27 @@ namespace SushiBot
             }
             catch (CartLimitExceededException exception)
             {
+                Cart.ProductList[sushi] = Constants.CartPositionLimit;
                 Console.WriteLine($"\n{exception.Message}");
-                Log.Info("Sushi amount in cart position must be less than 50.");
+                Log.Info("Sushi amount in cart position must be less than or equals 50." +
+                         " Amount was set to maximum value.");
             }
         }
 
         public void EditValue( KeyValuePair<Sushi, uint> cartPosition, uint sushiAmount)
         {
-            Cart.ProductList[cartPosition.Key] = sushiAmount;
+            try
+            {
+                Cart.CheckPositionProductsAmount(sushiAmount);
+                Cart.ProductList[cartPosition.Key] = sushiAmount;
+            }
+            catch (CartLimitExceededException exception)
+            {
+                Cart.ProductList[cartPosition.Key] = Constants.CartPositionLimit;
+                Console.WriteLine($"\n{exception.Message}");
+                Log.Info("Sushi amount in cart position must be less than or equals 50." +
+                         " Amount was set to maximum value.");
+            }
         }
 
         public Dictionary<Sushi,uint> GetAll() 
