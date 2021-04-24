@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Threading;
+using SushiBot.Estensions;
 
 namespace SushiBot
 {
@@ -171,21 +172,21 @@ namespace SushiBot
             
             string name = clientNameSurnameArray[Constants.NameIndexInArray];
             string surname = clientNameSurnameArray[Constants.SurnameIndexInArray];
+            Console.WriteLine($"{name}, please, input your Email:");
             string email = GetValidClientEmail();
-            Console.WriteLine("Please, input your address:");
+            Console.WriteLine($"{name}, please, input your address:");
             string address = Console.ReadLine();
             Client client = new Client(name, surname, address, email);
-            Console.WriteLine("Thank you for your personal information.");
+            Console.WriteLine($"{client.Name} thank you for your personal information.");
             return client;
         }
 
         private static string GetValidClientEmail()
         {
-            Console.WriteLine($"Input your Email:");
             for (; ; )
             {
                 string inputtedClientEmail = Console.ReadLine();
-                if (Client.IsEmailValid(inputtedClientEmail)) return inputtedClientEmail;
+                if (inputtedClientEmail.IsEmailValid()) return inputtedClientEmail;
                 Console.WriteLine("Hmm... Guess there is a problem with format. " +
                     "Just a reminder email has the format \"example@example.example\", try again.");
             }

@@ -51,6 +51,7 @@
     <Compile Include="Data\Cart.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Estensions\StringExtension.cs" />
     <Compile Include="Exceptions\CartLimitExceededException.cs" />
     <Compile Include="Interfaces\ICartRepository.cs" />
     <Compile Include="Interfaces\IProductRepository.cs" />
