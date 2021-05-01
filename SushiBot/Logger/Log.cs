@@ -5,11 +5,12 @@ using System.IO;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SushiBot.Logger
 {
-    static partial class Log
+    static class Log
     {
         public static LoggerConfiguration Configuration;
         static public int LogFileNumber = 1;
@@ -17,26 +18,27 @@ namespace SushiBot.Logger
         static string _currentMonth = DateTime.Now.ToString("MM");
         static string _currentDay = DateTime.Now.ToString("dd");
 
-        internal static void Debug(string message)
+        internal static async void Debug(string message)
         {
-            if (Configuration.MinLevel <= LoggerLevels.Debug) WriteLog(LoggerLevels.Debug, message);
+            if (Configuration.MinLevel <= LoggerLevels.Debug) await Task.Run(() => WriteLog(LoggerLevels.Debug, message));
         }
 
-        static public void Info(string message)
+        static public async void Info(string message)
         {
-            if (Configuration.MinLevel <= LoggerLevels.Info) WriteLog(LoggerLevels.Info, message);
+            if (Configuration.MinLevel <= LoggerLevels.Info) await Task.Run(() => WriteLog(LoggerLevels.Info, message));
         }
 
-        static public void Error(string message)
+        static public async void Error(string message)
         {
-            if (Configuration.MinLevel <= LoggerLevels.Error) WriteLog(LoggerLevels.Error, message);
+            if (Configuration.MinLevel <= LoggerLevels.Error) await Task.Run(() => WriteLog(LoggerLevels.Error, message));
         }
 
         static private void WriteLog(LoggerLevels logLevel, string message)
         {
-            string methName = new StackFrame(2).GetMethod().Name;
-            string methNamespace = new StackFrame(2).GetMethod().DeclaringType.Namespace;
-            
+            Thread thread = Thread.CurrentThread;
+            string methName = new StackFrame().GetMethod().Name;
+            string methNamespace = new StackFrame().GetMethod().DeclaringType.Namespace;
+            //Thread.Sleep(5000);
             while (true)
             {
                 FileInfo logFileInfo = new FileInfo($"{Configuration.Path}" +
@@ -71,8 +73,8 @@ namespace SushiBot.Logger
                     logFileStr = $"[{LoggerLevels.Error}] ";
                     break;
             }
-            Console.WriteLine($"] {currenTime}; Message: \"{message}\"; Inovked from: {methNamespace}.{methName}");
-            logFileStr += $"{currenTime}; Message: \"{message}\"; Inovked from: {methNamespace}.{methName}";
+            Console.WriteLine($"] {currenTime}; Message: \"{message}\"; Inovked from: {methNamespace}.{methName}; Thread ID: {thread.ManagedThreadId}");
+            logFileStr += $"{currenTime}; Message: \"{message}\"; Inovked from: {methNamespace}.{methName}; Thread ID: {thread.ManagedThreadId}";
             logFileWriter.Write(logFileStr + "\n");
             logFileWriter.Close();
             fs.Close();

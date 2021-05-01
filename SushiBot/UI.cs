@@ -236,7 +236,6 @@ namespace SushiBot
             for (; ; )
             {
                 Console.CursorVisible = false;
-                //Console.WriteLine();
                 foreach (var item in list)
                 {
                     if (listIndex == index)

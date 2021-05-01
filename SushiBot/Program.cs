@@ -16,7 +16,7 @@ namespace SushiBot
         {
             if (UI.IsProgramStart())
             {
-                Log.Configuration = new LoggerConfiguration(@"c:\Temp\", LoggerLevels.Info, 30);
+                Log.Configuration = new LoggerConfiguration(@"c:\Temp\", LoggerLevels.Error, 30);
                 bool isOrderConfirmed = default;
                 Order order = default;
                 ProductRepository productRep = new ProductRepository();
