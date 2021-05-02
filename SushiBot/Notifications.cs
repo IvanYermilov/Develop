@@ -4,7 +4,7 @@ using System.Net.Mail;
 
 namespace SushiBot
 {
-    class Notifications
+    class Notifications : IDisposable 
     {
         MailAddress from = new MailAddress("sushibotitacademy@gmail.com", "SushiBotItAcademy");
         MailAddress to;
@@ -57,6 +57,16 @@ namespace SushiBot
             smtp.EnableSsl = true;
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtp.Send(message);
+        }
+
+        public void Dispose()
+        {
+            from = null;
+            to = null;
+            message = null;
+            smtp = null;
+            client = null;
+            order = null;
         }
     }
 }

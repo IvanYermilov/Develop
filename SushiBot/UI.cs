@@ -263,15 +263,13 @@ namespace SushiBot
                     case (ConsoleKey.Enter):
                         Console.WriteLine();
                         return value;
-                    _:
-                        listIndex = 0;
-                        break;
                 }
                 Console.SetCursorPosition(0, a);
             }
         }
 
         public static uint GetPositiveNumber()
+
         {
             for (; ; )
             {

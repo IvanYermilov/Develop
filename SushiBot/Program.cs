@@ -34,6 +34,7 @@ namespace SushiBot
                 UI.NotifyCustomer += notifications.OrderDelivered;
                 UI.NotifyCustomer += notifications.OrderPaid;
                 UI.SendNotification();
+                notifications.Dispose();
             }
             Console.ReadKey();
         }

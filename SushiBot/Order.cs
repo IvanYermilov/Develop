@@ -15,7 +15,5 @@ namespace SushiBot
             ID = Guid.NewGuid();
             Cart = cartRep;
         }
-
-        
     }
 }
