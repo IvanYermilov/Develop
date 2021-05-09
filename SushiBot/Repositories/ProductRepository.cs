@@ -16,7 +16,7 @@ namespace SushiBot
             if (IsSushiInSushiList())
             {
                 List<Sushi> sushiList = Storage.SushiList;
-                Log.Info($"All sushies exist in database were retrieved.");
+                Log.Info($"All sushi exist in database were retrieved.");
                 return sushiList;
             }
             else Log.Info("Database is empty.");

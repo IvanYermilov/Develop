@@ -18,27 +18,25 @@ namespace SushiBot.Logger
         static string _currentMonth = DateTime.Now.ToString("MM");
         static string _currentDay = DateTime.Now.ToString("dd");
 
-        internal static async void Debug(string message)
+        internal static void Debug(string message)
         {
-            if (Configuration.MinLevel <= LoggerLevels.Debug) await Task.Run(() => WriteLog(LoggerLevels.Debug, message));
+            if (Configuration.MinLevel <= LoggerLevels.Debug) WriteLog(LoggerLevels.Debug, message);
+        }
+        static public void Info(string message)
+        {
+            if (Configuration.MinLevel <= LoggerLevels.Info) WriteLog(LoggerLevels.Info, message);
         }
 
-        static public async void Info(string message)
+        static public void Error(string message)
         {
-            if (Configuration.MinLevel <= LoggerLevels.Info) await Task.Run(() => WriteLog(LoggerLevels.Info, message));
+            if (Configuration.MinLevel <= LoggerLevels.Error) WriteLog(LoggerLevels.Error, message);
         }
 
-        static public async void Error(string message)
-        {
-            if (Configuration.MinLevel <= LoggerLevels.Error) await Task.Run(() => WriteLog(LoggerLevels.Error, message));
-        }
-
-        static private void WriteLog(LoggerLevels logLevel, string message)
+        static private async void WriteLog(LoggerLevels logLevel, string message)
         {
             Thread thread = Thread.CurrentThread;
             string methName = new StackFrame().GetMethod().Name;
             string methNamespace = new StackFrame().GetMethod().DeclaringType.Namespace;
-            //Thread.Sleep(5000);
             while (true)
             {
                 FileInfo logFileInfo = new FileInfo($"{Configuration.Path}" +
@@ -53,31 +51,35 @@ namespace SushiBot.Logger
             string logFileStr = null;
             Console.Write("[");
             switch (logLevel)
+                {
+                    case (LoggerLevels.Debug):
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write(LoggerLevels.Debug.ToString());
+                        Console.ResetColor();
+                        logFileStr = $"[{LoggerLevels.Debug}] ";
+                        break;
+                    case (LoggerLevels.Info):
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write(LoggerLevels.Info.ToString());
+                        Console.ResetColor();
+                        logFileStr = $"[{LoggerLevels.Info}] ";
+                        break;
+                    case (LoggerLevels.Error):
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write(LoggerLevels.Error.ToString());
+                        Console.ResetColor();
+                        logFileStr = $"[{LoggerLevels.Error}] ";
+                        break;
+                }
+
+            Console.WriteLine($"] {currenTime}; Message: \"{message}\"; Invoked from: {methNamespace}.{methName}; Thread ID: {thread.ManagedThreadId}");
+            logFileStr += $"{currenTime}; Message: \"{message}\"; Invoked from: {methNamespace}.{methName}; Thread ID: {thread.ManagedThreadId}";
+            await Task.Run(() =>
             {
-                case (LoggerLevels.Debug):
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.Write(LoggerLevels.Debug.ToString());
-                    Console.ResetColor();
-                    logFileStr = $"[{LoggerLevels.Debug}] ";
-                    break;
-                case (LoggerLevels.Info):
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.Write(LoggerLevels.Info.ToString());
-                    Console.ResetColor();
-                    logFileStr = $"[{LoggerLevels.Info}] ";
-                    break;
-                case (LoggerLevels.Error):
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write(LoggerLevels.Error.ToString());
-                    Console.ResetColor();
-                    logFileStr = $"[{LoggerLevels.Error}] ";
-                    break;
-            }
-            Console.WriteLine($"] {currenTime}; Message: \"{message}\"; Inovked from: {methNamespace}.{methName}; Thread ID: {thread.ManagedThreadId}");
-            logFileStr += $"{currenTime}; Message: \"{message}\"; Inovked from: {methNamespace}.{methName}; Thread ID: {thread.ManagedThreadId}";
-            logFileWriter.Write(logFileStr + "\n");
-            logFileWriter.Close();
-            fs.Close();
+                logFileWriter.Write(logFileStr + "\n");
+                logFileWriter.Close();
+                fs.Close();
+            });
         }
     }
 }

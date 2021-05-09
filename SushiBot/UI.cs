@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Threading;
+using System.Windows.Media;
 using SushiBot.Estensions;
 
 namespace SushiBot
@@ -229,7 +230,7 @@ namespace SushiBot
 
         public static T Menu<T>(Dictionary<string,T> list)
         {
-            int a = Console.CursorTop;
+            int cursorСoordinate = Console.CursorTop;
             int listIndex = 0;
             int index = 0;
             T value = default;
@@ -264,7 +265,7 @@ namespace SushiBot
                         Console.WriteLine();
                         return value;
                 }
-                Console.SetCursorPosition(0, a);
+                Console.SetCursorPosition(0, cursorСoordinate);
             }
         }
 

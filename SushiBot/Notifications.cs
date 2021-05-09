@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Mail;
+using System.Runtime.InteropServices;
 
 namespace SushiBot
 {
@@ -23,6 +24,8 @@ namespace SushiBot
 
         public void OrderReady2Delivery()
         {
+            UI.Wait();
+            Console.WriteLine($"Order №{order.ID} is ready.");
             message.Subject = $"Order №{order.ID}";
             message.Body = $"<p>Dear, {client.Name} {client.Surname}, your <b>Order</b> №{order.ID} is ready<br>" +
                      $"<b>Order info:</b><br>" +
@@ -37,6 +40,8 @@ namespace SushiBot
 
         public void OrderDelivered()
         {
+            UI.Wait();
+            Console.WriteLine($"Order №{order.ID} has been delivered.");
             message.Subject = $"Order №{order.ID}";
             message.Body = $"<p>Dear, {client.Name} {client.Surname}, your <b>Order</b> №{order.ID} has been delivered " +
                            $"to the address: {client.Address}.</p>";
@@ -49,6 +54,8 @@ namespace SushiBot
         
         public void OrderPaid()
         {
+            UI.Wait();
+            Console.WriteLine($"Order №{order.ID} has been paid.");
             message.Subject = $"Order №{order.ID}";
             message.Body = $"<p>Dear, {client.Name} {client.Surname}, your <b>Order</b> №{order.ID} has been paid.<br><br>" +
                            $"Thank you!</p>";
