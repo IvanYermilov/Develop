@@ -13,6 +13,7 @@ namespace SushiBot
         SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
         Client client;
         Order order;
+        private bool disposed;
 
         public Notifications(Client client, Order order)
         {
@@ -68,12 +69,30 @@ namespace SushiBot
 
         public void Dispose()
         {
-            from = null;
-            to = null;
-            message = null;
-            smtp = null;
-            client = null;
-            order = null;
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    from = null;
+                    to = null;
+                    message = null;
+                    smtp = null;
+                    client = null;
+                    order = null;
+                }
+                disposed = true;
+            }
+        }
+
+        ~Notifications()
+        {
+            Dispose(false);
         }
     }
 }

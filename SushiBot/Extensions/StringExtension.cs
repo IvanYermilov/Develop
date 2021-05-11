@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace SushiBot.Estensions
+namespace SushiBot.Extensions
 {
     static class StringExtension
     {
