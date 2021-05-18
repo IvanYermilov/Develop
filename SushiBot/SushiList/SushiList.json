@@ -1,0 +1,56 @@
+[
+  {
+    "Id": 1,
+    "Name": "Kitano",
+    "Price": 10.0,
+    "Description": "Lorem"
+  },
+  {
+    "Id": 2,
+    "Name": "Tokigava",
+    "Price": 30.0,
+    "Description": "Ipsum"
+  },
+  {
+    "Id": 3,
+    "Name": "Philadelphia",
+    "Price": 20.0,
+    "Description": "Lorem Ipsum"
+  },
+  {
+    "Id": 4,
+    "Name": "Arasaka",
+    "Price": 40.0,
+    "Description": "Ipsum Lorem"
+  },
+  {
+    "Id": 5,
+    "Name": "Tai Yong",
+    "Price": 15.0,
+    "Description": "Ipsum"
+  },
+  {
+    "Id": 6,
+    "Name": "Kintaro",
+    "Price": 19.0,
+    "Description": "Lorem"
+  },
+  {
+    "Id": 7,
+    "Name": "Shang Chi",
+    "Price": 23.0,
+    "Description": "Ipsum Lorem"
+  },
+  {
+    "Id": 7,
+    "Name": "Kitao",
+    "Price": 18.0,
+    "Description": "Lorem Ipsum"
+  },
+  {
+    "Id": 8,
+    "Name": "Star",
+    "Price": 10.0,
+    "Description": "Ipsum"
+  }
+]
